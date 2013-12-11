@@ -1,7 +1,5 @@
 # Text Message Voting Application
 
-====================
-
 This is a text message voting application that I originally completed as a project for the [Rapid Prototyping and Creative Development](http://classes.engineering.wustl.edu/cse330/index.php/CSE_330_Online_Textbook_-_Table_of_Contents)
 course at Washington University in St. Louis. It is based on the Audience Voting App created by [Philip Thomas](http://philipithomas.com/voting-application/)
 for a dance competition which I organized in April, 2013.
@@ -17,3 +15,5 @@ The MySQL tables are set up as described in the database.php comments.
 
 In addition, several values need to be set from the user's Twilio account and database users. Instructions are commented into the files
 where the changes must be made.
+
+====================
