@@ -11,26 +11,9 @@ but databases and a Twilio account must be set up manually, and it can only hand
 an admin interface and abstract the poll creater from needing to manually interact with databases. Further result analysis
 will be available as well.
 
-This application uses a MySQL database and the [official PHP Twilio REST API and TwiML library](https://www.twilio.com/docs/libraries).
-The MySQL tables are set up as described below:
+This application uses a MySQL database and the official [PHP Twilio REST API and TwiML library](https://www.twilio.com/docs/libraries).
+The MySQL tables are set up as described in the database.php comments.
 
-choices:
 
-+-------+---------------------+------+-----+---------+----------------+
-| Field | Type                | Null | Key | Default | Extra          |
-+-------+---------------------+------+-----+---------+----------------+
-| id    | tinyint(3) unsigned | NO   | PRI | NULL    | auto_increment |
-| name  | varchar(200)        | NO   |     | NULL    |                |
-+-------+---------------------+------+-----+---------+----------------+
-
-votes:
-
-+--------+-----------------------+------+-----+---------+----------------+
-| Field  | Type                  | Null | Key | Default | Extra          |
-+--------+-----------------------+------+-----+---------+----------------+
-| id     | mediumint(8) unsigned | NO   | PRI | NULL    | auto_increment |
-| number | varchar(15)           | NO   |     | NULL    |                |
-| vote   | tinyint(3) unsigned   | YES  | MUL | NULL    |                |
-+--------+-----------------------+------+-----+---------+----------------+
-
-In addition, several values need to be set from the user's Twilio account and database users. Instructions are commented into the files.
+In addition, several values need to be set from the user's Twilio account and database users. Instructions are commented into the files
+where the changes must be made.
