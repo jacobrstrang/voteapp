@@ -1,5 +1,6 @@
 <?php
     
+    //Check if input is a valid vote
     function isValid($input) {
         require "database.php";
         $stmt = $mysqli->prepare("SELECT COUNT(*) FROM choices");
@@ -19,8 +20,10 @@
         }
     }
     
+    //Perform database operations to create or update vote
     function vote($number, $vote) {
         require "database.php";
+	//Check if phone number has voted before
         $stmt = $mysqli->prepare("SELECT COUNT(*) FROM votes WHERE number = ?");
         if(!$stmt){
         	printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -31,6 +34,8 @@
         $stmt->execute();
         $stmt->fetch();
         $stmt->close();
+	
+	//If number has voted before, update database entry instead of creating new row
         if((int)$voted != 0) {
             $stmt = $mysqli->prepare("UPDATE votes SET vote = ? WHERE number = ?");
             if(!$stmt){
@@ -42,6 +47,8 @@
             $stmt->close();
             update_vote($number, $vote);
         }
+	
+	//If number has not voted, create new entry for that number
         else {
             $stmt = $mysqli->prepare("INSERT INTO votes (number, vote) VALUES (?, ?)");
             if(!$stmt){
@@ -56,6 +63,7 @@
         }
     }
     
+    //Respond to user with result of their updated vote
     function update_vote($number, $vote) {
         require "database.php";
         $stmt = $mysqli->prepare("SELECT name FROM choices WHERE id=?");
@@ -68,6 +76,7 @@
         return send_text($number, $message);
     }
     
+    //Respond to user with result of their new vote
     function new_vote($number, $vote) {
         require "database.php";
         $stmt = $mysqli->prepare("SELECT name FROM choices WHERE id=?");
@@ -80,6 +89,7 @@
         return send_text($number, $message);
     }
     
+    //Handles all messages sent to user
     function send_text($number, $message) {
         require "twilio/Services/Twilio.php";
 	
@@ -97,6 +107,7 @@
         return true;
     }
     
+    //Generate message of all possible voting choices to send to user
     function send_choices($number) {
         require "database.php";
         $stmt = $mysqli->prepare("SELECT id, name FROM choices");

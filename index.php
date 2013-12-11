@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+    <!-- CSS code for graph found at http://concepts.waetech.com/bargraph/ -->
     <html>
         <head>
             <style type="text/css">
