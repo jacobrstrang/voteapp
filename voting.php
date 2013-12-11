@@ -82,12 +82,15 @@
     
     function send_text($number, $message) {
         require "twilio/Services/Twilio.php";
-        $AccountSid = AC4fa1dc13518ebb932ae710ed866ff311;
-        $AuthToken = c37897b809d3df500af84c285d07fae4;
+	
+	//Enter proper AccountSid and AuthToken (From account page on Twilio)
+        $AccountSid = 'AccountSid';
+        $AuthToken = 'AuthToken';
         $client = new Services_Twilio($AccountSid, $AuthToken);
         
         $sms = $client->account->sms_messages->create(
-            "608-467-1480",
+	    //Replace "Twilio number" with the Twilio number you want the reply to come from
+            "Twilio Number",
             $number,
             $message
         );

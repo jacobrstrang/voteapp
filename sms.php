@@ -9,7 +9,8 @@
     $from = ( $_REQUEST[ 'From' ] );
     $message =  (string)trim(strip_tags( $_REQUEST[ 'Body' ] ));
     
-    $adminNumber="+16086589890";
+    //Replace {admin} with poll owner's phone number, using format "+5555555555"
+    $adminNumber="{admin}";
     if(($from == $adminNumber) && ($message == "Open")) {
         $stmt = $mysqli->prepare("UPDATE open SET isopen=?");
         $stmt->bind_param('s',$message);
